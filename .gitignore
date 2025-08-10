@@ -1,0 +1,21 @@
+# User-specific files
+*.rsuser
+*.suo
+*.user
+*.userosscache
+*.sln.docstates
+
+# Build results
+[Dd]ebug/
+[Rr]elease/
+x64/
+build/
+bin/
+obj/
+
+# Visual Studio cache files
+.vs/
+
+# Others
+*.log
+*.vsix
