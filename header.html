@@ -1,0 +1,145 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Toggle Mobile Menu</title>
+    <style>
+        /* Reset */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body, html {
+            height: 100%;
+            font-family: Arial, sans-serif;
+        }
+
+        /* Header */
+        header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 60px;
+            background-color: #333;
+            color: white;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0 16px;
+            z-index: 1000;
+        }
+
+            header .title {
+                font-size: 1.25rem;
+            }
+
+        /* Hamburger */
+        .menu-toggle {
+            width: 30px;
+            height: 25px;
+            cursor: pointer;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+
+            .menu-toggle span {
+                display: block;
+                height: 3px;
+                background: white;
+                border-radius: 2px;
+            }
+
+        /* Menu */
+        nav.menu {
+            position: fixed;
+            top: 60px;
+            left: 0;
+            width: 100%;
+            height: 0;
+            overflow: hidden;
+            background-color: #444;
+            display: flex;
+            flex-direction: column;
+            transition: height 0.3s ease;
+            z-index: 999;
+        }
+
+            nav.menu.open {
+                height: 80vh; /* show menu */
+            }
+
+            nav.menu a {
+                color: white;
+                text-decoration: none;
+                font-size: 1.5rem;
+                padding: 15px 0;
+                text-align: center;
+                border-bottom: 1px solid #555;
+            }
+
+                nav.menu a:last-child {
+                    border-bottom: none;
+                }
+
+                nav.menu a:hover {
+                    background-color: #666;
+                }
+
+        /* Responsive font size */
+        @media (max-width: 400px) {
+            nav.menu a {
+                font-size: 1.25rem;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <div class="title">My Header</div>
+        <div class="menu-toggle" id="menu-toggle" aria-label="Toggle menu" aria-expanded="false" role="button" tabindex="0">
+            <span></span>
+            <span></span>
+            <span></span>
+        </div>
+    </header>
+
+    <nav class="menu" id="menu">
+        <a href="#tab1">Tab 1</a>
+        <a href="#tab2">Tab 2</a>
+        <a href="#tab3">Tab 3</a>
+        <a href="#tab4">Tab 4</a>
+    </nav>
+
+    <div style="margin-top: 60px; padding: 20px;">
+        <h2>Page Content</h2>
+        <p>This content is below the header and menu.</p>
+    </div>
+
+    <script>
+  const toggleBtn = document.getElementById('menu-toggle');
+  const menu = document.getElementById('menu');
+
+  function toggleMenu() {
+    const isOpen = menu.classList.toggle('open');
+    toggleBtn.setAttribute('aria-expanded', isOpen);
+  }
+
+  toggleBtn.addEventListener('click', toggleMenu);
+
+  // Accessibility: allow toggling menu with Enter or Space keys on toggle button
+  toggleBtn.addEventListener('keydown', function(e) {
+    if(e.key === 'Enter' || e.key === ' ') {
+      e.preventDefault();
+      toggleMenu();
+    }
+  });
+    </script>
+
+</body>
+</html>
